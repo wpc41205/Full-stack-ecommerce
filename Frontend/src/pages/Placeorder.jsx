@@ -65,6 +65,26 @@ const Placeorder = () => {
             toast.error(response.data.message);
           }
           break;
+
+        case 'stripe':
+          const stripeResponse = await axios.post(backendUrl + '/api/order/stripe', orderData, {headers:{token}});
+          if(stripeResponse.data.success){
+            const {session_url} = stripeResponse.data;
+            window.location.replace(session_url);
+          }else{
+            toast.error(stripeResponse.data.message);
+          }
+          break;
+
+          case 'razorpay':
+            const razorpayResponse = await axios.post(backendUrl + '/api/order/razorpay', orderData, {headers:{token}});
+            if(razorpayResponse.data.success){
+              const {order_id} = razorpayResponse.data;
+              window.location.replace(order_id);
+            }else{
+              toast.error(razorpayResponse.data.message);
+            }
+            break;  
       }
 
     } catch (error) {
