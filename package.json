@@ -1,0 +1,19 @@
+{
+  "name": "full-stack-ecommerce",
+  "version": "1.0.0",
+  "description": "Full Stack E-commerce Application",
+  "private": true,
+  "scripts": {
+    "build": "cd Frontend && npm install && npm run build",
+    "dev": "cd Frontend && npm run dev",
+    "install-all": "cd Frontend && npm install && cd ../admin && npm install && cd ../Backend && npm install"
+  },
+  "workspaces": [
+    "Frontend",
+    "admin",
+    "Backend"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
