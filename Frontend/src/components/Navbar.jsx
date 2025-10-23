@@ -40,6 +40,9 @@ const Navbar = () => {
                 <p>CONTACT</p>
                 <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden'/>
             </NavLink>
+            <a href="https://admin.foreverbuy.in/" target="_blank" rel="noopener noreferrer" className='border border-gray-200 px-5 text-xs py-1 rounded-full -mt-2'>
+                <p className='mt-1'>Admin Panel</p>
+            </a>
         </ul>
 
         <div className='flex items-center gap-6'>
@@ -71,6 +74,7 @@ const Navbar = () => {
             <NavLink onClick={()=>setVisible(false)} className='py-2 pl-6 border border-gray-200' to='/collection'>COLLECTION</NavLink>
             <NavLink onClick={()=>setVisible(false)} className='py-2 pl-6 border border-gray-200' to='/about'>ABOUT</NavLink>
             <NavLink onClick={()=>setVisible(false)} className='py-2 pl-6 border border-gray-200' to='/contact'>CONTACT</NavLink>
+            <NavLink onClick={()=>setVisible(false)} className='py-2 pl-6 border border-gray-200' to='/admin'>ADMIN PANEL</NavLink>
         </div>
        </div>
 
