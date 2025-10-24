@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { assets } from '../assets/assets'
+import { backendUrl } from '../App'
 import { toast } from 'react-toastify'
 
 const Add = () => {
@@ -80,7 +81,7 @@ const Add = () => {
       // Get token from localStorage
       const token = localStorage.getItem('token');
       
-      const response = await fetch('http://localhost:4000/api/product/add', {
+      const response = await fetch(`${backendUrl}/api/product/add`, {
         method: 'POST',
         headers: {
           'token': token
