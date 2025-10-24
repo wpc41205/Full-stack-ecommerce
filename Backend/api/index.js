@@ -9,7 +9,15 @@ import cartRouter from '../routes/cartRoute.js';
 import orderRouter from '../routes/orderRoute.js';
 
 // Load environment variables
-dotenv.config({ path: '../.env' });
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Load .env from Backend directory
+const envPath = path.join(__dirname, '..', '.env');
+dotenv.config({ path: envPath });
 
 // Debug: Log loaded environment variables
 console.log('Loaded MONGODB_URI:', process.env.MONGODB_URI ? 'Found' : 'Missing');
@@ -30,9 +38,13 @@ app.use(cors({
         process.env.ADMIN_URL || "https://your-admin-project.vercel.app",
         "http://localhost:3000",
         "http://localhost:5173",
-        "http://localhost:5174"
+        "http://localhost:5174",
+        "https://*.vercel.app",
+        "https://*.netlify.app"
     ],
-    credentials: true
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 // api endpoint
@@ -48,6 +60,20 @@ app.get('/', (req, res) => {
 // Health check endpoint
 app.get('/health', (req, res) => {
     res.json({ status: 'OK', timestamp: new Date().toISOString() });
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error('Error:', err);
+    res.status(500).json({ 
+        error: 'Internal Server Error',
+        message: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong'
+    });
+});
+
+// 404 handler
+app.use('*', (req, res) => {
+    res.status(404).json({ error: 'Route not found' });
 });
 
 // Export the app as a Vercel serverless function
