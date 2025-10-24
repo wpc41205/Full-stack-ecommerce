@@ -7,7 +7,7 @@ const Login = () => {
 
   const [currentState, setCurrentState] = useState('Login')
   const { token, setToken, navigate, getCartData } = useContext(ShopContext);
-  const backendUrl = import.meta.env.VITE_BACKEND_URL || 'https://full-stack-ecommerce-backend-psi.vercel.app';
+  const backendUrl = import.meta.env.VITE_BACKEND_URL || 'https://full-stack-ecommerce-backend-chi.vercel.app';
 
   const [name,setName] = useState('')
   const [email,setEmail] = useState('')
