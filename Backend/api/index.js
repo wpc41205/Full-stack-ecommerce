@@ -29,18 +29,10 @@ connectCloudinary();
 // middlewares
 app.use(express.json());
 app.use(cors({
-    origin: [
-        process.env.FRONTEND_URL || "https://full-stack-ecommerce-frontend-tau.vercel.app",
-        process.env.ADMIN_URL || "https://full-stack-ecommerce-admin-seven.vercel.app",
-        "http://localhost:3000",
-        "http://localhost:5173",
-        "http://localhost:5174",
-        "https://*.vercel.app",
-        "https://*.netlify.app"
-    ],
+    origin: true, // Allow all origins temporarily
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'token']
+    allowedHeaders: ['Content-Type', 'Authorization', 'token', 'x-requested-with', 'accept', 'origin']
 }));
 
 // api endpoint
