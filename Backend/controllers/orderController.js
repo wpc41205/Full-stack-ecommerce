@@ -1,6 +1,6 @@
 import orderModel from '../models/orderModel.js';
 import userModel from '../models/usersModel.js';
-import Stripe from 'stripe';
+// import Stripe from 'stripe';
 import Razorpay from 'razorpay';
 
 //global variables
@@ -8,7 +8,7 @@ const currency = 'INR';
 const delivery_charge = 10;
 
 // gateway initialize
-const stripe = process.env.STRIPE_SECRET_KEY ? new Stripe(process.env.STRIPE_SECRET_KEY) : null;
+// const stripe = process.env.STRIPE_SECRET_KEY ? new Stripe(process.env.STRIPE_SECRET_KEY) : null;
 
 // Plact orders using COD Method
 const placeOrder = async (req, res) => {
@@ -81,18 +81,8 @@ const placeOrderStripe = async (req, res) => {
         quantity: 1,
     });
 
-    if (!stripe) {
-        return res.json({ success: false, message: 'Stripe is not configured' });
-    }
-
-    const session = await stripe.checkout.sessions.create({
-        success_url: `${origin}/verify?success=true&orderId=${newOrder._id}`,
-        cancel_url: `${origin}/verify?success=false&orderId=${newOrder._id}`,
-        line_items: line_item,
-        mode: 'payment',
-    });
-
-    res.json({ success: true, session_url: session.url });
+    // Stripe payment is disabled
+    return res.json({ success: false, message: 'Stripe payment is not available' });
 
  } catch (error) {
     console.log(error);
