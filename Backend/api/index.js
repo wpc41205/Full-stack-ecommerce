@@ -1,15 +1,15 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
-import connectDB from './config/mongodb.js';
-import connectCloudinary from './config/cloudinary.js';
-import userRouter from './routes/userRoute.js';
-import productRouter from './routes/productRouts.js';
-import cartRouter from './routes/cartRoute.js';
-import orderRouter from './routes/orderRoute.js';
+import connectDB from '../config/mongodb.js';
+import connectCloudinary from '../config/cloudinary.js';
+import userRouter from '../routes/userRoute.js';
+import productRouter from '../routes/productRouts.js';
+import cartRouter from '../routes/cartRoute.js';
+import orderRouter from '../routes/orderRoute.js';
 
 // Load environment variables
-dotenv.config();
+dotenv.config({ path: '../.env' });
 
 // Debug: Log loaded environment variables
 console.log('Loaded MONGODB_URI:', process.env.MONGODB_URI ? 'Found' : 'Missing');
