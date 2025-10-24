@@ -2,8 +2,6 @@ import orderModel from '../models/orderModel.js';
 import userModel from '../models/usersModel.js';
 import Stripe from 'stripe';
 import Razorpay from 'razorpay';
-import dotenv from 'dotenv';
-dotenv.config();
 
 //global variables
 const currency = 'INR';

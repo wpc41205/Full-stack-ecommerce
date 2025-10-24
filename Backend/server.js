@@ -33,7 +33,18 @@ connectCloudinary();
 
 // middlewares
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: [
+        process.env.FRONTEND_URL || "https://your-frontend-project.vercel.app",
+        process.env.ADMIN_URL || "https://your-admin-project.vercel.app",
+        "http://localhost:3000",
+        "http://localhost:5173",
+        "http://localhost:5174"
+    ],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 // api endpoint
 app.use('/api/user', userRouter);
