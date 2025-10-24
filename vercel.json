@@ -14,12 +14,5 @@
   ],
   "env": {
     "NODE_ENV": "production"
-  },
-  "functions": {
-    "Backend/api/index.js": {
-      "maxDuration": 30,
-      "memory": 1024
-    }
-  },
-  "regions": ["sin1"]
+  }
 }
