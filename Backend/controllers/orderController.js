@@ -10,7 +10,7 @@ const currency = 'INR';
 const delivery_charge = 10;
 
 // gateway initialize
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const stripe = process.env.STRIPE_SECRET_KEY ? new Stripe(process.env.STRIPE_SECRET_KEY) : null;
 
 // Plact orders using COD Method
 const placeOrder = async (req, res) => {
@@ -82,6 +82,10 @@ const placeOrderStripe = async (req, res) => {
         },
         quantity: 1,
     });
+
+    if (!stripe) {
+        return res.json({ success: false, message: 'Stripe is not configured' });
+    }
 
     const session = await stripe.checkout.sessions.create({
         success_url: `${origin}/verify?success=true&orderId=${newOrder._id}`,
