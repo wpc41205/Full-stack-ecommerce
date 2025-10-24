@@ -25,7 +25,7 @@ const connectDB = async () => {
             minPoolSize: 5, // Maintain a minimum of 5 socket connections
             maxIdleTimeMS: 30000, // Close connections after 30 seconds of inactivity
             bufferMaxEntries: 0, // Disable mongoose buffering
-            bufferCommands: false, // Disable mongoose buffering
+            bufferCommands: true, // Enable mongoose buffering to handle connection timing
         });
     } catch (error) {
         console.error('Failed to connect to MongoDB:', error.message);
