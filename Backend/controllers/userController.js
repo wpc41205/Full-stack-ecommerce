@@ -10,7 +10,6 @@ const createToken = (id) => {
 // Route for user login
 const loginUser = async (req, res) => {
     try {
-
         const {email, password} = req.body;
 
         //Checking user already exists or not
@@ -40,7 +39,6 @@ const loginUser = async (req, res) => {
 const registerUser = async (req, res) => {
     
     try {
-
         const {name, email, password} = req.body;
 
         //Checking user already exists or not

@@ -1,6 +1,5 @@
 import {v2 as cloudinary} from 'cloudinary';
 import productModel from '../models/productModel.js';
-import mongoose from 'mongoose';
 
 //fuction for add product
 const addProduct = async (req, res) => {
@@ -52,26 +51,12 @@ const addProduct = async (req, res) => {
 const listProducts = async (req, res) => {
 
     try {
-        // Check if MongoDB is connected
-        if (mongoose.connection.readyState !== 1) {
-            console.log('MongoDB not connected, waiting for connection...');
-            await new Promise((resolve) => {
-                if (mongoose.connection.readyState === 1) {
-                    resolve();
-                } else {
-                    mongoose.connection.once('connected', resolve);
-                }
-            });
-        }
         
-        const products = await productModel.find({}).maxTimeMS(20000); // 20 seconds timeout
+        const products = await productModel.find({});
         res.json({success: true, data: products});
 
     } catch (error) {
-        console.log('Product list error:', error);
-        if (error.name === 'MongoServerSelectionError' || error.name === 'MongoTimeoutError') {
-            return res.json({success: false, message: 'Database connection timeout. Please try again.'});
-        }
+        console.log(error);
         return res.json({success: false, message: error.message});
     }
 
