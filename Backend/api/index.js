@@ -9,19 +9,15 @@ import cartRouter from '../routes/cartRoute.js';
 import orderRouter from '../routes/orderRoute.js';
 
 // Load environment variables
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// Load .env from Backend directory
-const envPath = path.join(__dirname, '..', '.env');
-dotenv.config({ path: envPath });
+// In Vercel, environment variables are automatically loaded
+// No need to manually load .env file
 
 // Debug: Log loaded environment variables
-console.log('Loaded MONGODB_URI:', process.env.MONGODB_URI ? 'Found' : 'Missing');
-console.log('Loaded JWT_SECRET:', process.env.JWT_SECRET ? 'Found' : 'Missing');
+console.log('Environment check:');
+console.log('NODE_ENV:', process.env.NODE_ENV);
+console.log('MONGODB_URI:', process.env.MONGODB_URI ? 'Found' : 'Missing');
+console.log('JWT_SECRET:', process.env.JWT_SECRET ? 'Found' : 'Missing');
+console.log('CLOUDINARY_CLOUD_NAME:', process.env.CLOUDINARY_CLOUD_NAME ? 'Found' : 'Missing');
 
 // App Config
 const app = express();

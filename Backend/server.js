@@ -10,14 +10,15 @@ import productRouter from './routes/productRouts.js';
 import cartRouter from './routes/cartRoute.js';
 import orderRouter from './routes/orderRoute.js';
 
-// Load .env using absolute paths (Backend/.env first, then project root .env)
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// Force load .env from current directory
-const envPath = path.join(__dirname, '.env');
-console.log('Loading .env from:', envPath);
-dotenv.config({ path: envPath });
+// Load environment variables
+// In production (Vercel), environment variables are automatically loaded
+// In development, load from .env file
+if (process.env.NODE_ENV !== 'production') {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    const envPath = path.join(__dirname, '.env');
+    dotenv.config({ path: envPath });
+}
 
 // Debug: Log loaded environment variables
 console.log('Loaded MONGODB_URI:', process.env.MONGODB_URI ? 'Found' : 'Missing');
