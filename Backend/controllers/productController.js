@@ -52,11 +52,14 @@ const listProducts = async (req, res) => {
 
     try {
         
-        const products = await productModel.find({});
+        const products = await productModel.find({}).maxTimeMS(20000); // 20 seconds timeout
         res.json({success: true, data: products});
 
     } catch (error) {
-        console.log(error);
+        console.log('Product list error:', error);
+        if (error.name === 'MongoServerSelectionError' || error.name === 'MongoTimeoutError') {
+            return res.json({success: false, message: 'Database connection timeout. Please try again.'});
+        }
         return res.json({success: false, message: error.message});
     }
 
