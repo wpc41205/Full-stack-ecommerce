@@ -40,7 +40,7 @@ const Navbar = () => {
                 <p>CONTACT</p>
                 <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden'/>
             </NavLink>
-            <a href="https://admin.foreverbuy.in/" target="_blank" rel="noopener noreferrer" className='border border-gray-200 px-5 text-xs py-1 rounded-full -mt-2'>
+            <a href="https://full-stack-ecommerce-admin-seven.vercel.app/" target="_blank" rel="noopener noreferrer" className='border border-gray-200 px-5 text-xs py-1 rounded-full -mt-2'>
                 <p className='mt-1'>Admin Panel</p>
             </a>
         </ul>
