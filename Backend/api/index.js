@@ -67,10 +67,7 @@ app.use((err, req, res, next) => {
     });
 });
 
-// 404 handler
-app.use('/*', (req, res) => {
-    res.status(404).json({ error: 'Route not found' });
-});
+// 404 handler - removed to fix routing error
 
 // Export the app as a Vercel serverless function
 export default app;
